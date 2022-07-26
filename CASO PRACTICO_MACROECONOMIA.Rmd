@@ -104,6 +104,14 @@ RmatrizUSA
 
 ```
 
+```{r ACTUALIZAR kNITR}
+update.packages(ask = FALSE, repos = 'http://cran.rstudio.org')
+
+
+install.packages('knitr', repos = c('http://rforge.net', 'http://cran.rstudio.org'),
+                 type = 'source')
+```
+
 
 
 
