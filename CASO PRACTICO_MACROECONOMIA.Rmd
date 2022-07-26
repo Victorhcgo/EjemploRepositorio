@@ -101,6 +101,7 @@ colnames(RmatrizUSA) <- Bienes
 rownames(RmatrizUSA) <- Years 
 cbind(RmatrizUSA, infUSA)
 RmatrizUSA
+
 ```
 
 
