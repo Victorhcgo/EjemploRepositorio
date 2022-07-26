@@ -1,0 +1,108 @@
+---
+title: "CASO PRACTICO_MACROECONOMIA"
+author: "Victor Hugo Caicedo Gómez"
+date: "July 26, 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+options(scipen=999)
+```
+
+```{r}
+Bienes <- c("Alimentos", "Ocio", "Vivienda")
+Years <- c("Año1", "Año2")
+
+#datos de USA
+Year1USA <- c(5,7,9)
+Year2USA <- c(6,12,19)
+mUSA <- c(Year1USA, Year2USA)
+#Datos de España
+Year1ESP <- c(1,4,7)
+Year2ESP <- c(3.3, 5,15)
+mESp <- c(Year1ESP, Year2ESP)
+
+```
+
+```{r matrix de USA, fig.align='center'}
+matrizUSA <- matrix(mUSA,  byrow = F, nrow = 3)
+colnames(matrizUSA) <- Years
+rownames(matrizUSA) <- Bienes
+matrizUSA
+```
+
+```{r matriz de España, fig.align='center'}
+matrizESP <- matrix(mESp, byrow = F, nrow = 3)
+colnames(matrizESP) <- Years
+rownames(matrizESP) <- Bienes
+matrizESP
+```
+
+# PRIMER PUNTO
+
+```{r Suma valores años USA}
+Ponderacion1USA <- (matrizUSA[,1]/sum(matrizUSA[,1]))*100
+Ponderacion2USA <- (matrizUSA[,2]/sum(matrizUSA[,1]))*100
+```
+
+```{r Suma valores años España}
+Ponderacion1ESP <- (matrizESP[,1]/sum(matrizESP[,1]))*100
+Ponderacion2ESP <- (matrizESP[,2]/sum(matrizESP[,1]))*100
+```
+
+```{r IPC de USA}
+VipcUSA <- numeric(length(Bienes)) #definir vector vacio
+varUsa <- matrizUSA[,2]/matrizUSA[,1] #primero se debe generar un vector nX1
+# Con el FOR se llena el vector
+for (i in 1:length(Bienes)) 
+  {
+    VipcUSA[i] <-Ponderacion1USA[i]*varUsa[i]
+  }
+ipcUSA <- round(sum(VipcUSA), 2)
+paste("El IPC de USA para el año 2 es de", ipcUSA,"%")
+```
+
+```{r IPC de ESPAÑA}
+
+vipESP <- numeric(length(Bienes))
+varESP <- matrizESP[,2]/matrizESP[,1]
+for (i in 1:length(Bienes)) 
+  {
+  vipESP[i] <- Ponderacion1ESP * varESP
+}
+ipcESP <-round(sum(vipESP),2)
+paste("El IPC de USA para el",Years," es de", ipcESP,"%")
+
+```
+
+```{r TASA DE INFLACIÓN USA}
+vinfUSA <- numeric(length(Years))
+for (i in 2:length(Years)) {
+  vinfUSA[i] <- ((ipcUSA-100)/100)*100
+}
+infUSA <- vinfUSA
+paste("La inflación par USA en el",Years, "es de",infUSA,"%")
+
+```
+
+```{r TASA DE INFLACIÓN ESPAÑA}
+vinfESP <- numeric(length(Years))
+for (i in 2:length(Years)) {
+  vinfESP[i] <- ((ipcESP-100)/100)*100
+}
+infESP <- vinfESP
+paste("La inflación para España en EL",Years,"es de",infESP,"%")
+```
+```{r}
+RmatrizUSA <- matrix(mUSA,  byrow = T, nrow = 2)
+colnames(RmatrizUSA) <- Bienes
+rownames(RmatrizUSA) <- Years 
+cbind(RmatrizUSA, infUSA)
+RmatrizUSA
+```
+
+
+
+
