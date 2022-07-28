@@ -1,13 +1,17 @@
 ---
 title: "CASO PRACTICO_MACROECONOMIA"
-author: "Victor Hugo Caicedo Gómez"
+author: "Victor Hugo Caicedo GÃ³mez"
 date: "July 26, 2022"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+library(xfun)
+library(rmarkdown)
 options(scipen=999)
 ```
 
@@ -105,11 +109,12 @@ RmatrizUSA
 ```
 
 ```{r ACTUALIZAR kNITR}
-update.packages(ask = FALSE, repos = 'http://cran.rstudio.org')
+#update.packages(ask = FALSE, repos = 'http://cran.rstudio.org')
 
 
-install.packages('knitr', repos = c('http://rforge.net', 'http://cran.rstudio.org'),
-                 type = 'source')
+#install.packages('knitr', repos = c('http://rforge.net', 'http://cran.rstudio.org'),type = 'source')
+#if (!require(devtools)) install.packages("devtools")
+#devtools::install_github("boxuancui/DataExplorer", ref = "develop")
 ```
 
 
